@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configurationSnapshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:schemas-microsoft-com:xml-wcfconfigurationsnapshot">
+  <behaviors />
+  <bindings>
+    <binding digest="System.ServiceModel.Configuration.BasicHttpBindingElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089:&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data name=&quot;tissSolicitacaoProcedimento_Binding&quot; /&gt;" bindingType="basicHttpBinding" name="tissSolicitacaoProcedimento_Binding" />
+  </bindings>
+  <endpoints>
+    <endpoint normalizedDigest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;http://187.94.62.176:20807/tissSolicitacaoProcedimentoV3_03_01V3_03_01.apw&quot; binding=&quot;basicHttpBinding&quot; bindingConfiguration=&quot;tissSolicitacaoProcedimento_Binding&quot; contract=&quot;SolicitacaoProcedimento.tissSolicitacaoProcedimento_PortType&quot; name=&quot;tissSolicitacaoProcedimento_Port&quot; /&gt;" digest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;http://187.94.62.176:20807/tissSolicitacaoProcedimentoV3_03_01V3_03_01.apw&quot; binding=&quot;basicHttpBinding&quot; bindingConfiguration=&quot;tissSolicitacaoProcedimento_Binding&quot; contract=&quot;SolicitacaoProcedimento.tissSolicitacaoProcedimento_PortType&quot; name=&quot;tissSolicitacaoProcedimento_Port&quot; /&gt;" contractName="SolicitacaoProcedimento.tissSolicitacaoProcedimento_PortType" name="tissSolicitacaoProcedimento_Port" />
+  </endpoints>
+</configurationSnapshot>

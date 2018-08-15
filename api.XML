@@ -1,0 +1,2616 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>api</name>
+    </assembly>
+    <members>
+        <member name="M:api.Filters.AuthenticationFilter.#ctor(System.String)">
+            <summary>Initializes a new instance of the <see cref="T:System.Web.Http.HostAuthenticationFilter"/> class.</summary>
+            <param name="authenticationType">The authentication type of the OWIN middleware to use.</param>
+        </member>
+        <member name="P:api.Filters.AuthenticationFilter.AuthenticationType">
+            <summary>Gets the authentication type of the OWIN middleware to use.</summary>
+        </member>
+        <member name="M:api.Filters.AuthenticationFilter.AuthenticateAsync(System.Web.Http.Filters.HttpAuthenticationContext,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:api.Filters.AuthenticationFilter.ChallengeAsync(System.Web.Http.Filters.HttpAuthenticationChallengeContext,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="P:api.Filters.AuthenticationFilter.AllowMultiple">
+            <inheritdoc />
+        </member>
+        <member name="T:api.Helpers.StringExtension">
+            <summary>
+            Métodos de extensão para o tipo string
+            </summary>
+        </member>
+        <member name="M:api.Helpers.StringExtension.IsNullOrEmpty(System.String)">
+            <summary>
+            Indica se a string é nula ou vazia
+            </summary>
+            <param name="value">cadeia de caracteres</param>
+            <returns>true, nula ou vazia, caso contrário, false</returns>
+        </member>
+        <member name="M:api.Helpers.StringExtension.NullString(System.String)">
+            <summary>
+            Define a string com o valor nulo
+            </summary>
+            <param name="value">cadeia de caracteres</param>
+            <returns>Null</returns>
+        </member>
+        <member name="M:api.Helpers.StringExtension.RemoverJavaTag(System.String)">
+            <summary>
+            Remove as tags (java class exception) do retorno do exception do java
+            para não retornar para o front-end
+            </summary>
+            <param name="value">cadeia de caracteres</param>
+            <returns>string sem as tags</returns>
+        </member>
+        <member name="T:api.Helpers.WrapperImpersonationContext">
+            <summary>
+            Classe que cuida da troca de usuários - Possibilita executar um determinado trecho de código com outro usuário
+            </summary>
+        </member>
+        <member name="M:api.Helpers.WrapperImpersonationContext.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="domain">Domínio do Usuário</param>
+            <param name="username">Nome de Usuário</param>
+            <param name="password">Senha do Usuário</param>
+        </member>
+        <member name="M:api.Helpers.WrapperImpersonationContext.Enter">
+            <summary>
+            Faz o login e inicia o contexto para usuário passado ao instanciar a classe
+            </summary>
+        </member>
+        <member name="M:api.Helpers.WrapperImpersonationContext.Leave">
+            <summary>
+            Encerra o contexto de usuário criado no método Enter()
+            </summary>
+        </member>
+        <member name="T:api.Helpers.TransactionHelper">
+            <summary>
+            Gerencia transação para o banco DATABASE
+            </summary>
+        </member>
+        <member name="T:api.Mappers.AutoMapperConfig">
+            <summary>
+            Configurações do mapeamento de objeto para objeto
+            </summary>
+        </member>
+        <member name="M:api.Mappers.AutoMapperConfig.RegisterMappings">
+            <summary>
+            Registra os mapeamentos
+            </summary>
+        </member>
+        <member name="T:api.Modules.Beneficiarios.BeneficiariosController">
+            <summary>
+            Organiza as rotas da API para o modulo de Beneficiarios
+            </summary>
+        </member>
+        <member name="M:api.Modules.Beneficiarios.BeneficiariosController.Autorizar(System.Nullable{System.Int32})">
+            <summary>
+            Efetua a verificação de elegibilidade
+            </summary>
+            <param name="beneficiarioId">Id do beneficiário</param>
+            <response code="406">Parâmetros de entrada inválidos</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="T:api.Modules.Beneficiarios.Queries">
+            <summary>
+            Armazena as queries SQL em constantes
+            </summary>
+        </member>
+        <member name="T:api.Modules.BaseController.Result`1">
+            <summary>
+            Retorno padrao para objeto
+            </summary>
+        </member>
+        <member name="P:api.Modules.BaseController.Result`1.Data">
+            <summary>
+            Registro
+            </summary>
+        </member>
+        <member name="T:api.Modules.BaseController.ResultList`1">
+            <summary>
+            Retorno padrao para listas de objetos
+            </summary>
+        </member>
+        <member name="P:api.Modules.BaseController.ResultList`1.Data">
+            <summary>
+            Registros 
+            </summary>
+        </member>
+        <member name="P:api.Modules.BaseController.ResultList`1.Count">
+            <summary>
+            Total de registros retornados
+            </summary>
+        </member>
+        <member name="T:api.Modules.BaseController.ResultListWithPaging`1">
+            <summary>
+            Retorno padrao para listas paginadas
+            </summary>
+        </member>
+        <member name="P:api.Modules.BaseController.ResultListWithPaging`1.PageSize">
+            <summary>
+            Quantidade de registros por pagina, para apoio a paginacao
+            </summary>
+        </member>
+        <member name="P:api.Modules.BaseController.ResultListWithPaging`1.PageIndex">
+            <summary>
+            Pagina atual, para apoio a paginacao
+            </summary>
+        </member>
+        <member name="T:api.Modules.ConfigCtor">
+            <summary>
+            Parametros de configuracao comuns a todos Models. 
+            Serao injetados ao abrir a transacao.
+            </summary>
+        </member>
+        <member name="M:api.Modules.BaseModel.Query``1(System.String,System.Object,System.Data.CommandType)">
+            <summary>
+            Execute a query and map the results to a strongly typed List
+            </summary>
+        </member>
+        <member name="M:api.Modules.BaseModel.Execute(System.String,System.Object,System.Data.CommandType)">
+            <summary>
+            Execute a Command that returns no results
+            </summary>
+        </member>
+        <member name="T:api.Modules.ListModel`1">
+            <summary>
+            Model generico para trabalhar com listas nos controllers
+            </summary>
+        </member>
+        <member name="T:api.VerificaElegibilidade.tissFaultWS">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.tissFaultWS.tissFault">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.st_tissFault">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.st_tissFault.DestinatarioInvalido">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.st_tissFault.RemetenteInvalido">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.st_tissFault.LoginInvalido">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.st_tissFault.VersaoInvalida">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.st_tissFault.HashInvalido">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.st_tissFault.SchemaInvalido">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.st_tissFault.ErroInesperadoServidor">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.ct_elegibilidadeRecibo">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeRecibo.registroANS">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeRecibo.numeroCarteira">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeRecibo.validadeCarteira">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeRecibo.validadeCarteiraSpecified">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeRecibo.nomeBeneficiario">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeRecibo.numeroCNS">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeRecibo.identificadorBeneficiario">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeRecibo.respostaSolicitacao">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeRecibo.motivosNegativa">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.dm_simNao">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_simNao.S">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_simNao.N">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.ct_motivoGlosa">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_motivoGlosa.codigoGlosa">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_motivoGlosa.descricaoGlosa">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.dm_tipoGlosa">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1001">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1002">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1003">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1004">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1005">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1006">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1007">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1008">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1009">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1010">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1011">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1012">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1013">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1014">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1015">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1016">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1017">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1018">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1019">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1020">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1021">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1022">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1023">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1024">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1025">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1101">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1102">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1103">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1104">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1201">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1202">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1203">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1204">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1205">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1206">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1207">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1208">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1209">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1210">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1211">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1212">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1213">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1214">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1215">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1216">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1217">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1218">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1301">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1302">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1303">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1304">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1305">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1306">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1307">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1308">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1309">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1310">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1311">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1312">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1313">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1314">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1315">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1316">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1317">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1318">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1319">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1320">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1321">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1322">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1323">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1401">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1402">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1403">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1404">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1405">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1406">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1407">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1408">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1409">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1410">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1411">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1412">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1413">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1414">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1415">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1416">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1417">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1418">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1419">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1420">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1421">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1422">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1423">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1424">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1425">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1426">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1427">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1428">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1429">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1430">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1431">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1432">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1433">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1434">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1435">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1436">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1437">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1438">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1501">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1502">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1503">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1504">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1505">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1506">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1507">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1508">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1509">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1601">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1602">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1603">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1604">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1605">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1606">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1607">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1608">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1609">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1610">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1611">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1612">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1613">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1614">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1615">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1701">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1702">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1703">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1704">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1705">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1706">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1707">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1708">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1709">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1710">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1711">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1712">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1713">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1714">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1715">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1716">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1717">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1718">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1719">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1720">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1721">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1722">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1723">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1724">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1725">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1726">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1727">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1728">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1729">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1730">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1731">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1732">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1733">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1734">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1735">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1736">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1737">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1738">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1739">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1740">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1741">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1742">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1743">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1744">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1745">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1746">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1747">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1748">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1749">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1801">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1802">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1803">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1804">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1805">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1806">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1807">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1808">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1809">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1810">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1811">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1812">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1813">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1814">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1815">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1816">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1817">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1818">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1819">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1820">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1821">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1822">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1823">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1824">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1825">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1826">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1827">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1828">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1829">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1830">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1831">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1832">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1833">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1834">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1835">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1836">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1837">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1838">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1839">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1840">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1901">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1902">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1903">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1904">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1905">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1906">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1907">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1908">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1909">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1910">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1911">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1912">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1913">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1914">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1915">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1916">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1917">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item1918">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2001">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2002">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2003">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2004">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2005">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2006">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2007">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2008">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2009">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2010">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2011">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2012">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2013">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2014">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2015">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2101">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2102">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2103">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2104">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2105">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2106">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2107">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2108">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2109">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2110">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2111">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2112">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2113">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2114">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2115">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2201">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2202">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2203">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2204">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2205">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2206">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2207">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2208">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2209">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2210">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2211">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2212">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2213">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2301">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2302">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2303">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2304">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2305">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2306">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2307">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2308">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2309">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2310">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2401">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2402">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2403">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2404">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2405">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2406">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2407">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2408">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2409">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2410">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2411">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2412">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2413">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2414">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2415">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2416">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2417">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2418">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2419">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2420">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2421">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2422">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2423">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2424">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2501">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2502">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2503">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2504">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2505">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2506">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2507">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2508">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2509">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2510">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2511">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2512">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2513">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2514">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2515">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2516">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2601">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2602">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2603">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2604">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2605">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2606">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2607">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2608">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2609">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2610">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2611">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2612">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2613">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2614">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2701">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2702">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2703">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2704">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2705">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2706">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2707">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2708">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2709">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2710">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2711">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2712">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2713">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2714">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2715">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2716">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2717">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2718">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2801">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2802">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2803">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2804">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2805">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2806">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2807">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2808">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2809">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2810">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2811">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2812">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2813">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2814">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2815">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2816">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2817">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2818">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2819">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2820">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2821">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2822">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2901">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2902">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2903">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2904">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2905">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2906">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2907">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2908">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item2909">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3001">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3002">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3003">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3004">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3005">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3006">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3007">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3008">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3009">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3010">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3011">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3012">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3013">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3014">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3015">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3016">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3017">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3018">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3019">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3020">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3021">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3022">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3023">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3024">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3025">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3026">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3027">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3028">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3029">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3030">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3031">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3032">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3033">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3034">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3035">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3036">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3037">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3038">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3039">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3040">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3041">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3042">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3043">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3044">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3045">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3046">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3047">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3048">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3049">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3050">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3051">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3052">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3053">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3054">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3055">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3056">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3057">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3058">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3059">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3060">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3061">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3062">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3063">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3064">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3065">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3066">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3067">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3068">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3069">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3070">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3071">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3072">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3073">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3074">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3075">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3076">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3077">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3078">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3079">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3080">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3081">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3082">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3083">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3084">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3085">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3086">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3087">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3088">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3089">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3090">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3091">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3092">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3093">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3094">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3095">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3096">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3097">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3098">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3100">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3101">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3102">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3103">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3104">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3105">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3106">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3107">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3108">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3109">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3110">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3111">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3112">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3113">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3114">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3115">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3116">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3117">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3118">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3119">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3120">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3121">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3122">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3123">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3124">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3125">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3126">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3127">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3128">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3129">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3130">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3131">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3132">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3133">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3134">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3135">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3136">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3137">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3138">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3139">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3140">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3141">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3142">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3143">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3144">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3145">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3146">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3147">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3148">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3149">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3150">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3151">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3152">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3153">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3154">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item3155">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5001">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5002">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5003">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5004">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5005">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5006">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5007">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5008">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5009">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5010">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5011">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5012">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5013">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5014">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5015">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5016">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5017">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5018">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5019">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5020">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5021">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5022">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5023">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5024">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5025">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5026">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5027">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5028">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5029">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5030">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5031">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5032">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5033">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5034">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5035">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5036">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5037">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5038">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5039">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5040">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5041">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5042">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5043">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5044">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5045">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5046">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5047">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5048">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5049">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5050">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5051">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5052">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5053">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5054">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5055">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5056">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5057">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5058">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5059">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoGlosa.Item5060">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.ct_respostaElegibilidade">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_respostaElegibilidade.Item">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.ObjectType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ObjectType.Any">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ObjectType.Id">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ObjectType.MimeType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ObjectType.Encoding">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.SPKIDataType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.SPKIDataType.Items">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.PGPDataType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.PGPDataType.Items">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.PGPDataType.ItemsElementName">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.ItemsChoiceType1">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType1.Item">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType1.PGPKeyID">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType1.PGPKeyPacket">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.X509IssuerSerialType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.X509IssuerSerialType.X509IssuerName">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.X509IssuerSerialType.X509SerialNumber">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.X509DataType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.X509DataType.Items">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.X509DataType.ItemsElementName">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.ItemsChoiceType">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType.Item">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType.X509CRL">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType.X509Certificate">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType.X509IssuerSerial">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType.X509SKI">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType.X509SubjectName">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.RetrievalMethodType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.RetrievalMethodType.Transforms">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.RetrievalMethodType.URI">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.RetrievalMethodType.Type">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.TransformType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.TransformType.Items">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.TransformType.Text">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.TransformType.Algorithm">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.RSAKeyValueType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.RSAKeyValueType.Modulus">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.RSAKeyValueType.Exponent">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.DSAKeyValueType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.DSAKeyValueType.P">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.DSAKeyValueType.Q">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.DSAKeyValueType.G">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.DSAKeyValueType.Y">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.DSAKeyValueType.J">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.DSAKeyValueType.Seed">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.DSAKeyValueType.PgenCounter">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.KeyValueType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.KeyValueType.Item">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.KeyValueType.Text">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.KeyInfoType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.KeyInfoType.Items">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.KeyInfoType.ItemsElementName">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.KeyInfoType.Text">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.KeyInfoType.Id">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.ItemsChoiceType2">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType2.Item">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType2.KeyName">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType2.KeyValue">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType2.MgmtData">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType2.PGPData">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType2.RetrievalMethod">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType2.SPKIData">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemsChoiceType2.X509Data">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.SignatureValueType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.SignatureValueType.Id">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.SignatureValueType.Value">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.DigestMethodType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.DigestMethodType.Any">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.DigestMethodType.Algorithm">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.ReferenceType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ReferenceType.Transforms">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ReferenceType.DigestMethod">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ReferenceType.DigestValue">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ReferenceType.Id">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ReferenceType.URI">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ReferenceType.Type">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.SignatureMethodType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.SignatureMethodType.HMACOutputLength">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.SignatureMethodType.Any">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.SignatureMethodType.Algorithm">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.CanonicalizationMethodType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.CanonicalizationMethodType.Any">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.CanonicalizationMethodType.Algorithm">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.SignedInfoType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.SignedInfoType.CanonicalizationMethod">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.SignedInfoType.SignatureMethod">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.SignedInfoType.Reference">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.SignedInfoType.Id">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.SignatureType">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.SignatureType.SignedInfo">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.SignatureType.SignatureValue">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.SignatureType.KeyInfo">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.SignatureType.Object">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.SignatureType.Id">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.assinaturaDigital">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.Signature">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.ct_contratadoDados">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_contratadoDados.Item">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_contratadoDados.ItemElementName">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_contratadoDados.nomeContratado">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.ItemChoiceType1">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemChoiceType1.cnpjContratado">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemChoiceType1.codigoPrestadorNaOperadora">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemChoiceType1.cpfContratado">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.ct_elegibilidadeVerifica">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeVerifica.dadosPrestador">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeVerifica.numeroCarteira">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeVerifica.nomeBeneficiario">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeVerifica.numeroCNS">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeVerifica.identificadorBeneficiario">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeVerifica.validadeCarteira">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_elegibilidadeVerifica.validadeCarteiraSpecified">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.ct_loginSenha">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_loginSenha.loginPrestador">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_loginSenha.senhaPrestador">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.ct_prestadorIdentificacao">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_prestadorIdentificacao.Item">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.ct_prestadorIdentificacao.ItemElementName">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.ItemChoiceType">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemChoiceType.CNPJ">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemChoiceType.CPF">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.ItemChoiceType.codigoPrestadorNaOperadora">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.cabecalhoTransacao">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.cabecalhoTransacao.identificacaoTransacao">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.cabecalhoTransacao.falhaNegocio">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.cabecalhoTransacao.falhaNegocioSpecified">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.cabecalhoTransacao.origem">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.cabecalhoTransacao.destino">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.cabecalhoTransacao.Padrao">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.cabecalhoTransacao.loginSenhaPrestador">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.cabecalhoTransacaoIdentificacaoTransacao">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.cabecalhoTransacaoIdentificacaoTransacao.tipoTransacao">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.cabecalhoTransacaoIdentificacaoTransacao.sequencialTransacao">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.cabecalhoTransacaoIdentificacaoTransacao.dataRegistroTransacao">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.cabecalhoTransacaoIdentificacaoTransacao.horaRegistroTransacao">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.dm_tipoTransacao">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.ENVIO_LOTE_GUIAS">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.ENVIO_ANEXO">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.SOLIC_DEMONSTRATIVO_RETORNO">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.SOLIC_STATUS_PROTOCOLO">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.SOLICITACAO_PROCEDIMENTOS">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.SOLICITA_STATUS_AUTORIZACAO">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.VERIFICA_ELEGIBILIDADE">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.CANCELA_GUIA">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.COMUNICACAO_BENEFICIARIO">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.RECURSO_GLOSA">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.SOLIC_STATUS_RECURSO_GLOSA">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.PROTOCOLO_RECEBIMENTO">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.PROTOCOLO_RECEBIMENTO_ANEXO">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.RECEBIMENTO_RECURSO_GLOSA">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.DEMONSTRATIVO_ANALISE_CONTA">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.DEMONSTRATIVO_PAGAMENTO">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.DEMONSTRATIVO_ODONTOLOGIA">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.SITUACAO_PROTOCOLO">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.RESPOSTA_SOLICITACAO">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.AUTORIZACAO_ODONTOLOGIA">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.STATUS_AUTORIZACAO">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.SITUACAO_ELEGIBILIDADE">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.CANCELAMENTO_GUIA_RECIBO">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.RECIBO_COMUNICACAO">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_tipoTransacao.RESPOSTA_RECURSO_GLOSA">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.cabecalhoTransacaoOrigem">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.cabecalhoTransacaoOrigem.Item">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.cabecalhoTransacaoOrigemIdentificacaoPrestador">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.cabecalhoTransacaoDestino">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.cabecalhoTransacaoDestino.Item">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.dm_versao">
+            <remarks/>
+        </member>
+        <member name="F:api.VerificaElegibilidade.dm_versao.Item30301">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.pedidoElegibilidadeWS">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.pedidoElegibilidadeWS.cabecalho">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.pedidoElegibilidadeWS.pedidoElegibilidade">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.pedidoElegibilidadeWS.hash">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.pedidoElegibilidadeWS.Signature">
+            <remarks/>
+        </member>
+        <member name="T:api.VerificaElegibilidade.respostaElegibilidadeWS">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.respostaElegibilidadeWS.cabecalho">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.respostaElegibilidadeWS.respostaElegibilidade">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.respostaElegibilidadeWS.hash">
+            <remarks/>
+        </member>
+        <member name="P:api.VerificaElegibilidade.respostaElegibilidadeWS.Signatures">
+            <remarks/>
+        </member>
+    </members>
+</doc>

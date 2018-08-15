@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0a2902d6-3b41-49ab-a839-e95f947180e4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://187.94.62.176:20807/tissVerificaElegibilidadeV3_03_01.apw?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="xmldsig-core-schema.xsd" MetadataType="Schema" ID="c61d3f71-ba89-4160-98db-de65667d7c1f" SourceId="1" SourceUrl="http://187.94.62.176:20807/xmldsig-core-schema.xsd" />
+    <MetadataFile FileName="tissV3_03_01.xsd" MetadataType="Schema" ID="5a4b6a6d-81eb-433c-9f4e-609e617de8a1" SourceId="1" SourceUrl="http://187.94.62.176:20807/tissV3_03_01.xsd" />
+    <MetadataFile FileName="tissVerificaElegibilidade.wsdl" MetadataType="Wsdl" ID="6cbd9562-0d95-4173-956a-3cac5c4c5798" SourceId="1" SourceUrl="http://187.94.62.176:20807/tissVerificaElegibilidadeV3_03_01.apw?wsdl" />
+    <MetadataFile FileName="tissGuiasV3_03_01.xsd" MetadataType="Schema" ID="548f59d5-9acf-48b1-8ac7-99e9fc3882cf" SourceId="1" SourceUrl="http://187.94.62.176:20807/tissGuiasV3_03_01.xsd" />
+    <MetadataFile FileName="tissWebServicesV3_03_01.xsd" MetadataType="Schema" ID="9fdb1174-df14-41d3-b561-176e904dac32" SourceId="1" SourceUrl="http://187.94.62.176:20807/tissWebServicesV3_03_01.xsd" />
+    <MetadataFile FileName="tissComplexTypesV3_03_01.xsd" MetadataType="Schema" ID="5bc929dd-2805-40d2-a30c-efb959fbe98b" SourceId="1" SourceUrl="http://187.94.62.176:20807/tissComplexTypesV3_03_01.xsd" />
+    <MetadataFile FileName="tissAssinaturaDigital_v1.xsd" MetadataType="Schema" ID="630efb6c-7df2-4f67-a54e-57849275324f" SourceId="1" SourceUrl="http://187.94.62.176:20807/tissAssinaturaDigital_v1.01.xsd" />
+    <MetadataFile FileName="tissSimpleTypesV3_03_01.xsd" MetadataType="Schema" ID="aa54133a-ab2b-4078-b862-7e12077bbc84" SourceId="1" SourceUrl="http://187.94.62.176:20807/tissSimpleTypesV3_03_01.xsd" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
