@@ -1,0 +1,16 @@
+C:\Users\bmene\Desktop\move2play-store-api\bin\Debug\netcoreapp2.0\NLog.config
+C:\Users\bmene\Desktop\move2play-store-api\bin\Debug\netcoreapp2.0\api.XML
+C:\Users\bmene\Desktop\move2play-store-api\bin\Debug\netcoreapp2.0\Api.deps.json
+C:\Users\bmene\Desktop\move2play-store-api\bin\Debug\netcoreapp2.0\Api.runtimeconfig.json
+C:\Users\bmene\Desktop\move2play-store-api\bin\Debug\netcoreapp2.0\Api.runtimeconfig.dev.json
+C:\Users\bmene\Desktop\move2play-store-api\bin\Debug\netcoreapp2.0\Api.dll
+C:\Users\bmene\Desktop\move2play-store-api\obj\Debug\netcoreapp2.0\Api.csprojAssemblyReference.cache
+C:\Users\bmene\Desktop\move2play-store-api\obj\Debug\netcoreapp2.0\Api.csproj.CoreCompileInputs.cache
+C:\Users\bmene\Desktop\move2play-store-api\obj\Debug\netcoreapp2.0\Api.AssemblyInfoInputs.cache
+C:\Users\bmene\Desktop\move2play-store-api\obj\Debug\netcoreapp2.0\Api.AssemblyInfo.cs
+C:\Users\bmene\Desktop\move2play-store-api\obj\Debug\netcoreapp2.0\Api.RazorAssemblyInfo.cache
+C:\Users\bmene\Desktop\move2play-store-api\obj\Debug\netcoreapp2.0\Api.RazorAssemblyInfo.cs
+C:\Users\bmene\Desktop\move2play-store-api\bin\Debug\netcoreapp2.0\Api.pdb
+C:\Users\bmene\Desktop\move2play-store-api\obj\Debug\netcoreapp2.0\Api.RazorTargetAssemblyInfo.cache
+C:\Users\bmene\Desktop\move2play-store-api\obj\Debug\netcoreapp2.0\Api.dll
+C:\Users\bmene\Desktop\move2play-store-api\obj\Debug\netcoreapp2.0\Api.pdb

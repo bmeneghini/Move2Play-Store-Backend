@@ -7,13 +7,11 @@ using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
 using NLog.Web;
-using Microsoft.Extensions.Logging;
-using NLog;
 using Microsoft.AspNetCore.Hosting;
-using Api.Models;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Api.Repositories;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Api
 {
@@ -29,36 +27,30 @@ namespace Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            //services.AddCors();
 
             services.AddMvcCore()
                 .AddAuthorization()
                 .AddJsonFormatters()
                 .AddApiExplorer();
 
-            services.AddAuthentication("Bearer")
-                .AddIdentityServerAuthentication(options =>
-                {
-                    options.Authority = "http://localhost:54472";
-                    options.RequireHttpsMetadata = false;
+            services.AddDbContextPool<move2playstoreContext>( 
+                options => options.UseMySql("Server=localhost;Database=move2playstore;User=root;Password=pcab2011;",
+                    mysqlOptions =>
+                    {
+                        mysqlOptions.ServerVersion(new Version(5, 7, 17), ServerType.MySql);
+                    }
+                ));
 
-                    options.ApiName = "api1";
-                });
-
-            services.AddDbContext<CemigAutorizadorContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            /*
-            services.AddTransient<IPrestadorRepository, PrestadorRepository>();
-            */
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1",
                     new Info
                     {
-                        Title = "API Cemig Saude",
+                        Title = "API Move2Play Store",
                         Version = "v1",
-                        Description = "API de verificação de elegibilidade"
+                        Description = "API do projeto Move2Play"
                     });
 
                 string caminhoAplicacao =
@@ -74,22 +66,22 @@ namespace Api
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseAuthentication();
 
             app.UseSwagger();
 
+            /*
             app.UseCors(builder => builder
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials()
                 );
-
+            */
 
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json",
-                    "Conversor de Temperaturas");
+                    "Store");
             });
 
             env.ConfigureNLog("nlog.config");
