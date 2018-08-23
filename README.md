@@ -1,2 +1,3 @@
-# MOVE2PLAYSTORE WEB API
-## Move2Play Store Project REST API
+# MOVE2PLAYSTORE REST WEB API
+
+### Nuget Packages ###
