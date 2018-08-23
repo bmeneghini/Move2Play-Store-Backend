@@ -1,2 +1,2 @@
-# move2play-store-api
-Move2Play Store Project REST API
+# MOVE2PLAYSTORE WEB API
+## Move2Play Store Project REST API
