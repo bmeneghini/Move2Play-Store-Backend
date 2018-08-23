@@ -1,0 +1,6 @@
+C:\Users\bmene\source\repos\move2playstore-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstore-api.csprojAssemblyReference.cache
+C:\Users\bmene\source\repos\move2playstore-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstore-api.csproj.CoreCompileInputs.cache
+C:\Users\bmene\source\repos\move2playstore-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstore-api.RazorAssemblyInfo.cache
+C:\Users\bmene\source\repos\move2playstore-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstore-api.RazorAssemblyInfo.cs
+C:\Users\bmene\source\repos\move2playstore-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstore-api.AssemblyInfoInputs.cache
+C:\Users\bmene\source\repos\move2playstore-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstore-api.AssemblyInfo.cs
