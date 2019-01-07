@@ -26,3 +26,17 @@ C:\Users\bmene\Desktop\move2play-store-api\move2playstore-api\obj\Debug\netcorea
 C:\Users\bmene\Desktop\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.RazorTargetAssemblyInfo.cache
 C:\Users\bmene\Desktop\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.dll
 C:\Users\bmene\Desktop\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.pdb
+C:\Projetos\move2play-store-api\move2playstore-api\bin\Debug\netcoreapp2.1\move2playstoreAPI.deps.json
+C:\Projetos\move2play-store-api\move2playstore-api\bin\Debug\netcoreapp2.1\move2playstoreAPI.runtimeconfig.json
+C:\Projetos\move2play-store-api\move2playstore-api\bin\Debug\netcoreapp2.1\move2playstoreAPI.runtimeconfig.dev.json
+C:\Projetos\move2play-store-api\move2playstore-api\bin\Debug\netcoreapp2.1\move2playstoreAPI.dll
+C:\Projetos\move2play-store-api\move2playstore-api\bin\Debug\netcoreapp2.1\move2playstoreAPI.pdb
+C:\Projetos\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.csprojAssemblyReference.cache
+C:\Projetos\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.csproj.CoreCompileInputs.cache
+C:\Projetos\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.RazorAssemblyInfo.cache
+C:\Projetos\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.RazorAssemblyInfo.cs
+C:\Projetos\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.AssemblyInfoInputs.cache
+C:\Projetos\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.AssemblyInfo.cs
+C:\Projetos\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.RazorTargetAssemblyInfo.cache
+C:\Projetos\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.dll
+C:\Projetos\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.pdb

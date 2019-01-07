@@ -17,7 +17,6 @@ namespace move2playstoreAPI.Models
         public string Name { get; set; }
         public string Email { get; set; }
 
-        public Usergame Usergame { get; set; }
         public ICollection<Comment> Comment { get; set; }
         public ICollection<Game> Game { get; set; }
         public ICollection<Purchase> Purchase { get; set; }

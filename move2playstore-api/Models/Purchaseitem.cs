@@ -5,11 +5,6 @@ namespace move2playstoreAPI.Models
 {
     public partial class Purchaseitem
     {
-        public Purchaseitem()
-        {
-            Usergame = new HashSet<Usergame>();
-        }
-
         public int Id { get; set; }
         public int PurchaseId { get; set; }
         public int GameId { get; set; }
@@ -17,6 +12,5 @@ namespace move2playstoreAPI.Models
 
         public Game Game { get; set; }
         public Purchase Purchase { get; set; }
-        public ICollection<Usergame> Usergame { get; set; }
     }
 }

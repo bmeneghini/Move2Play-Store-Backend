@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace move2playstoreAPI.Models
 {
@@ -22,7 +20,6 @@ namespace move2playstoreAPI.Models
         public virtual DbSet<Purchaseitem> Purchaseitem { get; set; }
         public virtual DbSet<Rating> Rating { get; set; }
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<Usergame> Usergame { get; set; }
         public virtual DbSet<Video> Video { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -283,39 +280,6 @@ namespace move2playstoreAPI.Models
                     .IsRequired()
                     .HasColumnName("name")
                     .HasColumnType("varchar(100)");
-            });
-
-            modelBuilder.Entity<Usergame>(entity =>
-            {
-                entity.HasKey(e => e.UserId);
-
-                entity.ToTable("usergame");
-
-                entity.HasIndex(e => e.PurchaseItemId)
-                    .HasName("fk_UserGame_PurchaseItem1_idx");
-
-                entity.HasIndex(e => e.UserId)
-                    .HasName("fk_User_has_Game_User1_idx");
-
-                entity.Property(e => e.UserId)
-                    .HasColumnName("userId")
-                    .HasColumnType("int(11)");
-
-                entity.Property(e => e.PurchaseItemId)
-                    .HasColumnName("purchaseItemId")
-                    .HasColumnType("int(11)");
-
-                entity.HasOne(d => d.PurchaseItem)
-                    .WithMany(p => p.Usergame)
-                    .HasForeignKey(d => d.PurchaseItemId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_UserGame_PurchaseItem1");
-
-                entity.HasOne(d => d.User)
-                    .WithOne(p => p.Usergame)
-                    .HasForeignKey<Usergame>(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_User_has_Game_User1");
             });
 
             modelBuilder.Entity<Video>(entity =>
