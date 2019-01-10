@@ -21,6 +21,8 @@ namespace move2playstore_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<Move2PlayStoreDBContext>(options =>
@@ -49,6 +51,13 @@ namespace move2playstore_api
             {
                 app.UseHsts();
             }
+
+            app.UseCors(builder => builder
+               .AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowCredentials()
+               );
 
             app.UseSwagger();
 

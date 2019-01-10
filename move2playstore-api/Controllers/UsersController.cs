@@ -29,7 +29,7 @@ namespace move2playstoreAPI.Controllers
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUser([FromRoute] int id)
+        public async Task<IActionResult> GetUser([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
@@ -48,7 +48,7 @@ namespace move2playstoreAPI.Controllers
 
         // PUT: api/Users/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser([FromRoute] int id, [FromBody] User user)
+        public async Task<IActionResult> PutUser([FromRoute] string id, [FromBody] User user)
         {
             if (!ModelState.IsValid)
             {
@@ -90,6 +90,13 @@ namespace move2playstoreAPI.Controllers
                 return BadRequest(ModelState);
             }
 
+            var usuario = await _context.User.FindAsync(user.Id);
+
+            if(usuario != null)
+            {
+                return StatusCode(200);
+            }
+
             _context.User.Add(user);
             await _context.SaveChangesAsync();
 
@@ -98,7 +105,7 @@ namespace move2playstoreAPI.Controllers
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser([FromRoute] int id)
+        public async Task<IActionResult> DeleteUser([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
@@ -117,7 +124,7 @@ namespace move2playstoreAPI.Controllers
             return Ok(user);
         }
 
-        private bool UserExists(int id)
+        private bool UserExists(string id)
         {
             return _context.User.Any(e => e.Id == id);
         }
