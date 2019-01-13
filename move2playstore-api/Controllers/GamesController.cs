@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using move2playstoreAPI.Controllers.Mappers;
+using move2playstoreAPI.DataTransferObjects;
+using move2playstoreAPI.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using move2playstoreAPI.Models;
 
 namespace move2playstoreAPI.Controllers
 {
@@ -83,17 +83,21 @@ namespace move2playstoreAPI.Controllers
 
         // POST: api/Games
         [HttpPost]
-        public async Task<IActionResult> PostGame([FromBody] Game game)
+        public async Task<IActionResult> PostGame([FromBody] GameUploadDto gameDto)
         {
-            if (!ModelState.IsValid)
+            if (gameDto == null)
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
+
+            var game = GameMapper.ConvertDtoToModel(gameDto);
 
             _context.Game.Add(game);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetGame", new { id = game.Id }, game);
+            SaveGameTrailer(game.Id, gameDto.TrailerUrl);
+
+            return Ok(game.Id);
         }
 
         // DELETE: api/Games/5
@@ -120,6 +124,17 @@ namespace move2playstoreAPI.Controllers
         private bool GameExists(int id)
         {
             return _context.Game.Any(e => e.Id == id);
+        }
+
+        private void SaveGameTrailer(int gameId, string trailerPath)
+        {
+            var video = new Video()
+            {
+                GameId = gameId,
+                Path = trailerPath
+            };
+            _context.Video.Add(video);
+            _context.SaveChanges();
         }
     }
 }

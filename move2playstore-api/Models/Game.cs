@@ -15,12 +15,12 @@ namespace move2playstoreAPI.Models
         }
 
         public int Id { get; set; }
-        public int? DeveloperId { get; set; }
+        public string DeveloperId { get; set; }
         public string Name { get; set; }
         public float Price { get; set; }
         public string Description { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public string Company { get; set; }
+        public string ServerPath { get; set; }
 
         public User Developer { get; set; }
         public ICollection<Comment> Comment { get; set; }
