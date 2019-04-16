@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace move2playstoreAPI.Models
 {
-    public partial class Game
+    public class Game
     {
         public Game()
         {
@@ -21,6 +21,7 @@ namespace move2playstoreAPI.Models
         public string Description { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string ServerPath { get; set; }
+        public string Genre { get; set; }
 
         public User Developer { get; set; }
         public ICollection<Comment> Comment { get; set; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace move2playstoreAPI.Models
 {
-    public partial class User
+    public class User
     {
         public User()
         {

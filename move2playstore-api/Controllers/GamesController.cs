@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using move2playstoreAPI.Controllers.Mappers;
 using move2playstoreAPI.DataTransferObjects;
@@ -90,14 +91,21 @@ namespace move2playstoreAPI.Controllers
                 return BadRequest();
             }
 
-            var game = GameMapper.ConvertDtoToModel(gameDto);
+            try
+            {
+                var game = GameMapper.ConvertDtoToModel(gameDto);
 
-            _context.Game.Add(game);
-            await _context.SaveChangesAsync();
+                _context.Game.Add(game);
+                await _context.SaveChangesAsync();
 
-            SaveGameTrailer(game.Id, gameDto.TrailerUrl);
+                SaveGameTrailer(game.Id, gameDto.TrailerUrl);
 
-            return Ok(game.Id);
+                return Ok(game.Id);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         // DELETE: api/Games/5

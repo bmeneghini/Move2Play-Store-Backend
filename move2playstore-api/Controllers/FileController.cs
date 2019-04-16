@@ -59,7 +59,7 @@ namespace move2playstoreAPI.Controllers
             return Ok();
         }
 
-        private bool CheckIfFileNameAlreadyExists(string path)
+        private static bool CheckIfFileNameAlreadyExists(string path)
         {
             return System.IO.File.Exists(path) ? true : false;
         }

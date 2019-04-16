@@ -16,8 +16,33 @@ namespace move2playstoreAPI.Controllers.Mappers
                 Name = dto.Name,
                 DeveloperId = dto.DeveloperId,
                 Price = dto.Price,
-                Description = dto.Description
+                Description = dto.Description,
+                ReleaseDate = DateTime.Now,
+                Genre = ConvertGenderFieldToEnum(dto.Gender)
             };
         }
+
+        private static string ConvertGenderFieldToEnum(string gender)
+        {
+            switch (gender)
+            {
+                case "10":
+                    return "Action";
+                case "20":
+                    return "Adventure";
+                case "30":
+                    return "Casual";
+                case "40":
+                    return "Sports";
+                case "50":
+                    return "Strategy";
+                case "60":
+                    return "Indie";
+                default:
+                    return "Casual";
+
+            }
+        }
+    
     }
 }

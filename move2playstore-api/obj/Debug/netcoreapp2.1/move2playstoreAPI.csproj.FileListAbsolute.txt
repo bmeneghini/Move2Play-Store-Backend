@@ -40,3 +40,17 @@ C:\Projetos\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2
 C:\Projetos\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.RazorTargetAssemblyInfo.cache
 C:\Projetos\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.dll
 C:\Projetos\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.pdb
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\bin\Debug\netcoreapp2.1\move2playstoreAPI.deps.json
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\bin\Debug\netcoreapp2.1\move2playstoreAPI.runtimeconfig.json
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\bin\Debug\netcoreapp2.1\move2playstoreAPI.runtimeconfig.dev.json
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\bin\Debug\netcoreapp2.1\move2playstoreAPI.dll
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\bin\Debug\netcoreapp2.1\move2playstoreAPI.pdb
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.csprojAssemblyReference.cache
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.RazorAssemblyInfo.cache
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.RazorAssemblyInfo.cs
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.AssemblyInfoInputs.cache
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.AssemblyInfo.cs
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.RazorTargetAssemblyInfo.cache
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.dll
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.pdb
