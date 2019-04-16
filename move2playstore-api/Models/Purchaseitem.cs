@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace move2playstoreAPI.Models
+﻿namespace move2playstoreAPI.Models
 {
     public partial class Purchaseitem
     {

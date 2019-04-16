@@ -1,9 +1,6 @@
 ﻿using move2playstoreAPI.DataTransferObjects;
 using move2playstoreAPI.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace move2playstoreAPI.Controllers.Mappers
 {
@@ -40,7 +37,6 @@ namespace move2playstoreAPI.Controllers.Mappers
                     return "Indie";
                 default:
                     return "Casual";
-
             }
         }
     
