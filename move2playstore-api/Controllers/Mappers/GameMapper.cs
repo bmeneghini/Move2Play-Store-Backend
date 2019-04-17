@@ -39,7 +39,7 @@ namespace move2playstoreAPI.Controllers.Mappers
             };
         }
 
-        private static string ConvertGenderFieldToEnum(string gender)
+        public static string ConvertGenderFieldToEnum(string gender)
         {
             switch (gender)
             {

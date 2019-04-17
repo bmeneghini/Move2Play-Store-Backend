@@ -31,7 +31,8 @@ namespace move2playstoreAPI.Controllers
                     .Include(game => game.Image)
                     .Include(game => game.Video)
                     .Include(game => game.Rating)
-                    .Include(game => game.Comment);
+                    .Include(game => game.Comment)
+                    .Take(4);
                 var gameDtoList = gamesList.Select(model => GameMapper.ConvertModelToDto(model)).ToList();
                 return Ok(gameDtoList);
             }
@@ -114,6 +115,47 @@ namespace move2playstoreAPI.Controllers
                 SaveGameTrailer(game.Id, gameDto.TrailerUrl);
 
                 return Ok(game.Id);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        // POST: api/Games/Filters
+        [HttpPost("Filters")]
+        public IActionResult GetGameWithFilters([FromBody] GameFilterDto filterDto)
+        {
+            if (filterDto == null)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                var gamesList = _context.Game
+                    .Include(game => game.Developer)
+                    .Include(game => game.Image)
+                    .Include(game => game.Video)
+                    .Include(game => game.Rating)
+                    .Include(game => game.Comment);
+                var gameDtoList = gamesList.Select(model => GameMapper.ConvertModelToDto(model)).ToList();
+                if (filterDto.Name.Length > 0)
+                {
+                    gameDtoList = gameDtoList.Where(game => game.Name.Contains(filterDto.Name)).ToList();
+                }
+                if (filterDto.Price > 0)
+                {
+                    gameDtoList = gameDtoList.Where(game => game.Price <= filterDto.Price).ToList();
+                }
+                if (filterDto.Genre.Length <= 0)
+                {
+                    return Ok(gameDtoList);
+                }
+                {
+                    var genre = GameMapper.ConvertGenderFieldToEnum(filterDto.Genre);
+                    gameDtoList = gameDtoList.Where(game => game.Genre.Contains(genre)).ToList();
+                }
+                return Ok(gameDtoList);
             }
             catch (Exception ex)
             {
