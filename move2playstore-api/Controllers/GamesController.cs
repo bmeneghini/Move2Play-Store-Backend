@@ -31,8 +31,7 @@ namespace move2playstoreAPI.Controllers
                     .Include(game => game.Image)
                     .Include(game => game.Video)
                     .Include(game => game.Rating)
-                    .Include(game => game.Comment)
-                    .Take(4);
+                    .Include(game => game.Comment);
                 var gameDtoList = gamesList.Select(model => GameMapper.ConvertModelToDto(model)).ToList();
                 return Ok(gameDtoList);
             }
@@ -44,21 +43,28 @@ namespace move2playstoreAPI.Controllers
 
         // GET: api/Games/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetGame([FromRoute] int id)
+        public IActionResult GetGame([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
+            if (id < 0)
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
-
-            var game = await _context.Game.FindAsync(id);
-
-            if (game == null)
+            try
             {
-                return NotFound();
+                var gamesList = _context.Game
+                    .Include(game => game.Developer)
+                    .Include(game => game.Image)
+                    .Include(game => game.Video)
+                    .Include(game => game.Rating)
+                    .Include(game => game.Comment)
+                    .Where(game => game.Id == id);
+                var gameDtoList = gamesList.Select(model => GameMapper.ConvertModelToDto(model)).ToList();
+                return Ok(gameDtoList);
             }
-
-            return Ok(game);
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         // PUT: api/Games/5
@@ -141,7 +147,7 @@ namespace move2playstoreAPI.Controllers
                 var gameDtoList = gamesList.Select(model => GameMapper.ConvertModelToDto(model)).ToList();
                 if (filterDto.Name.Length > 0)
                 {
-                    gameDtoList = gameDtoList.Where(game => game.Name.Contains(filterDto.Name)).ToList();
+                    gameDtoList = gameDtoList.Where(game => game.Name.ToLower().Contains(filterDto.Name.ToLower())).ToList();
                 }
                 if (filterDto.Price > 0)
                 {
