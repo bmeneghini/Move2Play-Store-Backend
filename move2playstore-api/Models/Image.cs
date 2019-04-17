@@ -5,7 +5,5 @@
         public int Id { get; set; }
         public int GameId { get; set; }
         public string Path { get; set; }
-
-        public Game Game { get; set; }
     }
 }

@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using move2playstoreAPI.Controllers.Mappers;
 using move2playstoreAPI.DataTransferObjects;
 using move2playstoreAPI.Models;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,9 +22,23 @@ namespace move2playstoreAPI.Controllers
 
         // GET: api/Games
         [HttpGet]
-        public IEnumerable<Game> GetGame()
+        public IActionResult GetGame()
         {
-            return _context.Game;
+            try
+            {
+                var gamesList = _context.Game
+                    .Include(game => game.Developer)
+                    .Include(game => game.Image)
+                    .Include(game => game.Video)
+                    .Include(game => game.Rating)
+                    .Include(game => game.Comment);
+                var gameDtoList = gamesList.Select(model => GameMapper.ConvertModelToDto(model)).ToList();
+                return Ok(gameDtoList);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         // GET: api/Games/5
@@ -102,7 +115,7 @@ namespace move2playstoreAPI.Controllers
 
                 return Ok(game.Id);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }

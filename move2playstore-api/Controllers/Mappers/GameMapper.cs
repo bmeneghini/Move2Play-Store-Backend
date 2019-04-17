@@ -19,6 +19,26 @@ namespace move2playstoreAPI.Controllers.Mappers
             };
         }
 
+        public static GameDto ConvertModelToDto(Game game)
+        {
+            return new GameDto
+            {
+                Id = game.Id,
+                ReleaseDate = game.ReleaseDate,
+                Name = game.Name,
+                Price = game.Price,
+                Genre = game.Genre,
+                ServerPath = game.ServerPath,
+                Description = game.Description,
+                Video = game.Video,
+                Image =  game.Image,
+                Comment =  game.Comment,
+                Rating = game.Rating,
+                DeveloperName = game.Developer.Name,
+                Purchaseitem = game.Purchaseitem
+            };
+        }
+
         private static string ConvertGenderFieldToEnum(string gender)
         {
             switch (gender)
