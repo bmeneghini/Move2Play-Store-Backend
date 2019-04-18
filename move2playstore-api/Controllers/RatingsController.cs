@@ -92,7 +92,18 @@ namespace move2playstoreAPI.Controllers
             }
             try
             {
-                _context.Rating.Add(RatingMapper.ConvertDtoToModel(rating));
+                var model = RatingMapper.ConvertDtoToModel(rating);
+                var result =  _context.Rating.FirstOrDefault(r => r.UserId == model.UserId && r.GameId == model.GameId);
+                if (result == null)
+                {
+                    _context.Rating.Add(model);
+                }
+                else
+                {
+                    result.Evaluation = model.Evaluation;
+                    _context.Entry(result).State = EntityState.Modified;
+                }
+                
                 await _context.SaveChangesAsync();
 
                 return StatusCode(201);

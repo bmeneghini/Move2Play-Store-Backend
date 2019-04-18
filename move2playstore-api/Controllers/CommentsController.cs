@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -33,15 +34,21 @@ namespace move2playstoreAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            var comment = await _context.Comment.FindAsync(id);
-
-            if (comment == null)
+            try
             {
-                return NotFound();
-            }
+                var comment = await _context.Comment.FindAsync(id);
 
-            return Ok(comment);
+                if (comment == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(comment);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         // PUT: api/Comments/5
@@ -70,10 +77,7 @@ namespace move2playstoreAPI.Controllers
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return NoContent();
@@ -87,11 +91,27 @@ namespace move2playstoreAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+            try
+            {
+                var result = _context.Comment.FirstOrDefault(c => c.UserId == comment.UserId && c.GameId == comment.GameId);
+                if (result == null)
+                {
+                    _context.Comment.Add(comment);
+                }
+                else
+                {
+                    result.Description = comment.Description;
+                    result.Recomendation = comment.Recomendation;
+                    _context.Entry(result).State = EntityState.Modified;
+                }
 
-            _context.Comment.Add(comment);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetComment", new { id = comment.Id }, comment);
+                await _context.SaveChangesAsync();
+                return StatusCode(201);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         // DELETE: api/Comments/5
