@@ -17,7 +17,7 @@ namespace move2playstoreAPI.DataTransferObjects
         public ICollection<Comment> Comment { get; set; }
         public ICollection<Image> Image { get; set; }
         public ICollection<Purchaseitem> Purchaseitem { get; set; }
-        public ICollection<Rating> Rating { get; set; }
+        public ICollection<RatingDto> Rating { get; set; }
         public ICollection<Video> Video { get; set; }
     }
 }

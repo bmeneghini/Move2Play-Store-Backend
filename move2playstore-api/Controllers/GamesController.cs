@@ -190,6 +190,31 @@ namespace move2playstoreAPI.Controllers
             return Ok(game);
         }
 
+        // POST: api/Games/User
+        [HttpPost("User")]
+        public IActionResult GetUserGames([FromBody] UserGame userGame)
+        {
+            if (userGame == null)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                var gamesList = _context.Game
+                    .Include(game => game.Developer)
+                    .Include(game => game.Image)
+                    .Include(game => game.Video)
+                    .Include(game => game.Rating)
+                    .Include(game => game.Comment);
+                var gameDtoList = gamesList.Select(model => GameMapper.ConvertModelToDto(model)).ToList();
+                return Ok(gameDtoList);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         private bool GameExists(int id)
         {
             return _context.Game.Any(e => e.Id == id);

@@ -43,11 +43,11 @@ namespace move2playstoreAPI.Controllers
                     await file.CopyToAsync(stream);
                 }
 
-                if (string.Equals(fileType, "Imagens"))
+                if (string.Equals(fileType, "imagens"))
                 {
                     SaveImage(path, gameId);
                 }
-                else if (string.Equals(fileType, "Arquivo de Jogo"))
+                else if (string.Equals(fileType, "arquivo-de-jogo"))
                 {
                     UpdateGamePath(path, gameId);
                 }
@@ -71,13 +71,13 @@ namespace move2playstoreAPI.Controllers
             {
                 case "image/jpeg":
                 case "image/png":
-                    return "Imagens";
+                    return "imagens";
                 case "application/zip":
                 case "application/x-7z-compressed":
                 case "application/x-rar-compressed":
-                    return "Arquivo de Jogo";
+                    return "arquivo-de-jogo";
                 default:
-                    return "Arquivo de Jogo";
+                    return "arquivo-de-jogo";
             }
         }
 
@@ -106,19 +106,18 @@ namespace move2playstoreAPI.Controllers
             {
                 Directory.CreateDirectory(root);
             }
-
             var gameFolder = Path.Combine(root, gameId.ToString());
             if (!Directory.Exists(gameFolder))
             {
                 Directory.CreateDirectory(gameFolder);
             }
-            if (!Directory.Exists(Path.Combine(gameFolder, "Imagens")))
+            if (!Directory.Exists(Path.Combine(gameFolder, "imagens")))
             {
-                Directory.CreateDirectory(Path.Combine(gameFolder, "Imagens"));
+                Directory.CreateDirectory(Path.Combine(gameFolder, "imagens"));
             }
-            if (!Directory.Exists(Path.Combine(gameFolder, "Arquivo de Jogo")))
+            if (!Directory.Exists(Path.Combine(gameFolder, "arquivo-de-jogo")))
             {
-                Directory.CreateDirectory(Path.Combine(gameFolder, "Arquivo de Jogo"));
+                Directory.CreateDirectory(Path.Combine(gameFolder, "arquivo-de-jogo"));
             }
             return gameFolder;
         }

@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using move2playstoreAPI.Controllers.Mappers;
+using move2playstoreAPI.DataTransferObjects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using move2playstoreAPI.Models;
@@ -81,17 +84,23 @@ namespace move2playstoreAPI.Controllers
 
         // POST: api/Ratings
         [HttpPost]
-        public async Task<IActionResult> PostRating([FromBody] Rating rating)
+        public async Task<IActionResult> PostRating([FromBody] RatingDto rating)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            try
+            {
+                _context.Rating.Add(RatingMapper.ConvertDtoToModel(rating));
+                await _context.SaveChangesAsync();
 
-            _context.Rating.Add(rating);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetRating", new { id = rating.Id }, rating);
+                return StatusCode(201);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         // DELETE: api/Ratings/5

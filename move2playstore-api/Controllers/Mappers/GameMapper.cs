@@ -1,6 +1,7 @@
 ﻿using move2playstoreAPI.DataTransferObjects;
 using move2playstoreAPI.Models;
 using System;
+using System.Linq;
 
 namespace move2playstoreAPI.Controllers.Mappers
 {
@@ -21,6 +22,8 @@ namespace move2playstoreAPI.Controllers.Mappers
 
         public static GameDto ConvertModelToDto(Game game)
         {
+            var ratings = game.Rating.Select(RatingMapper.ConvertModelToDto).ToList();
+
             return new GameDto
             {
                 Id = game.Id,
@@ -33,7 +36,7 @@ namespace move2playstoreAPI.Controllers.Mappers
                 Video = game.Video,
                 Image =  game.Image,
                 Comment =  game.Comment,
-                Rating = game.Rating,
+                Rating = ratings,
                 DeveloperName = game.Developer.Name,
                 Purchaseitem = game.Purchaseitem
             };
