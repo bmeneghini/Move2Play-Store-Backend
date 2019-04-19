@@ -62,6 +62,5 @@ namespace move2playstoreAPI.Controllers.Mappers
                     return "Casual";
             }
         }
-    
     }
 }

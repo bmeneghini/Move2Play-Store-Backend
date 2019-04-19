@@ -4,6 +4,7 @@ using move2playstoreAPI.Controllers.Mappers;
 using move2playstoreAPI.DataTransferObjects;
 using move2playstoreAPI.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -205,6 +206,49 @@ namespace move2playstoreAPI.Controllers
                     .Include(game => game.Video)
                     .Include(game => game.Rating)
                     .Include(game => game.Comment);
+                var purchases = _context.Purchase
+                    .Include(p => p.PurchaseItens)
+                    .Where(p => p.UserId == userGame.UserId);
+                var ownedGames = new List<int>();
+                foreach (var purchase in purchases)
+                {
+                    foreach (var item in purchase.PurchaseItens)
+                    {
+                        if (!ownedGames.Contains(item.GameId))
+                        {
+                            ownedGames.Add(item.GameId);
+                        }
+                    }
+                }
+                var gameDtoList = gamesList
+                    .Where(g => ownedGames.Contains(g.Id))
+                    .Select(model => GameMapper.ConvertModelToDto(model))
+                    .ToList();
+                return Ok(gameDtoList);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        // POST: api/Games/User/Uploaded
+        [HttpPost("User/Uploaded")]
+        public IActionResult GetUserUploadedGames([FromBody] UserGame userGame)
+        {
+            if (userGame == null)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                var gamesList = _context.Game
+                    .Include(game => game.Developer)
+                    .Include(game => game.Image)
+                    .Include(game => game.Video)
+                    .Include(game => game.Rating)
+                    .Include(game => game.Comment)
+                    .Where(game => game.DeveloperId == userGame.UserId);
                 var gameDtoList = gamesList.Select(model => GameMapper.ConvertModelToDto(model)).ToList();
                 return Ok(gameDtoList);
             }

@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using move2playstoreAPI.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using move2playstoreAPI.DataTransferObjects;
 
 namespace move2playstoreAPI.Controllers
 {
@@ -19,7 +21,7 @@ namespace move2playstoreAPI.Controllers
         }
 
         [HttpPost("{gameId}")]
-        public async Task<ActionResult> UploadFileAsync(IFormFile file, [FromRoute] int gameId)
+        public async Task<IActionResult> UploadFileAsync(IFormFile file, [FromRoute] int gameId)
         {
             if (file == null || file.Length == 0)
             {
@@ -58,6 +60,50 @@ namespace move2playstoreAPI.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DownloadFileAsync([FromBody] FileDto file)
+        {
+            if (file == null)
+            {
+                return BadRequest();
+            }
+
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(file.ServerPath, FileMode.Open))
+            {
+                await stream.CopyToAsync(memory);
+            }
+            memory.Position = 0;
+            return File(memory, GetContentType(file.ServerPath), Path.GetFileName(file.ServerPath));
+        }
+
+        private static string GetContentType(string path)
+        {
+            var types = GetMimeTypes();
+            var ext = Path.GetExtension(path).ToLowerInvariant();
+            return types[ext];
+        }
+
+        private static Dictionary<string, string> GetMimeTypes()
+        {
+            return new Dictionary<string, string>
+            {
+                {".txt", "text/plain"},
+                {".pdf", "application/pdf"},
+                {".doc", "application/vnd.ms-word"},
+                {".docx", "application/vnd.ms-word"},
+                {".xls", "application/vnd.ms-excel"},
+                {".png", "image/png"},
+                {".jpg", "image/jpeg"},
+                {".jpeg", "image/jpeg"},
+                {".gif", "image/gif"},
+                {".csv", "text/csv"},
+                {".zip", "application/zip" },
+                {".rar", "application/x-rar-compressed" },
+                {".7zip", "application/x-7z-compressed" }
+            };
         }
 
         private static bool CheckIfFileNameAlreadyExists(string path)
