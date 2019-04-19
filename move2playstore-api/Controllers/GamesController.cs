@@ -42,6 +42,28 @@ namespace move2playstoreAPI.Controllers
             }
         }
 
+        // GET: api/Games/Spotlights
+        [HttpGet("Spotlights")]
+        public IActionResult GetGameSpotlights()
+        {
+            try
+            {
+                var gamesList = _context.Game
+                    .Include(game => game.Developer)
+                    .Include(game => game.Image)
+                    .Include(game => game.Video)
+                    .Include(game => game.Rating)
+                    .Include(game => game.Comment)
+                    .Take(5);
+                var gameDtoList = gamesList.Select(model => GameMapper.ConvertModelToDto(model)).ToList();
+                return Ok(gameDtoList);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         // GET: api/Games/5
         [HttpGet("{id}")]
         public IActionResult GetGame([FromRoute] int id)

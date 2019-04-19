@@ -1,5 +1,4 @@
-﻿using move2playstore_api;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace move2playstoreAPI

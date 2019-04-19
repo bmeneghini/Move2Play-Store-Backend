@@ -45,13 +45,15 @@ namespace move2playstoreAPI.Controllers
                     await file.CopyToAsync(stream);
                 }
 
+                var relativePath = Path.Combine(gameId.ToString(), fileType, file.FileName);
+
                 if (string.Equals(fileType, "imagens"))
                 {
-                    SaveImage(path, gameId);
+                    SaveImage(relativePath, gameId);
                 }
                 else if (string.Equals(fileType, "arquivo-de-jogo"))
                 {
-                    UpdateGamePath(path, gameId);
+                    UpdateGamePath(relativePath, gameId);
                 }
 
                 return Ok();
