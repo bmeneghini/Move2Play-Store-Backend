@@ -54,3 +54,7 @@ C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2pla
 C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.RazorTargetAssemblyInfo.cache
 C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.dll
 C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.pdb
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\bin\Debug\netcoreapp2.1\Uol.PagSeguro.dll
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\bin\Debug\netcoreapp2.1\Uol.PagSeguro.pdb
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\bin\Debug\netcoreapp2.1\Uol.PagSeguro.xml
+C:\Users\Dell\Documents\DTI\Projetos\Move2PlayStore\move2play-store-api\move2playstore-api\obj\Debug\netcoreapp2.1\move2playstoreAPI.csproj.CopyComplete

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "move2playstoreAPI", "move2playstore-api\move2playstoreAPI.csproj", "{54394EBC-5F05-4201-AF07-7B1A8846A3A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "move2playstoreAPI", "move2playstore-api\move2playstoreAPI.csproj", "{54394EBC-5F05-4201-AF07-7B1A8846A3A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uol.PagSeguro", "Uol.PagSeguro\Uol.PagSeguro.csproj", "{BABC5658-6AFD-4F8E-81F1-434553663D99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{54394EBC-5F05-4201-AF07-7B1A8846A3A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54394EBC-5F05-4201-AF07-7B1A8846A3A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54394EBC-5F05-4201-AF07-7B1A8846A3A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BABC5658-6AFD-4F8E-81F1-434553663D99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BABC5658-6AFD-4F8E-81F1-434553663D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BABC5658-6AFD-4F8E-81F1-434553663D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BABC5658-6AFD-4F8E-81F1-434553663D99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
