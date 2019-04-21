@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -87,11 +88,26 @@ namespace move2playstoreAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+            try
+            {
+                purchase.PurchaseDate = DateTime.Now;
 
-            _context.Purchase.Add(purchase);
-            await _context.SaveChangesAsync();
+                _context.Purchase.Add(purchase);
 
-            return CreatedAtAction("GetPurchase", new { id = purchase.Id }, purchase);
+                foreach (var item in purchase.PurchaseItens)
+                {
+                    item.PurchaseId = purchase.Id;
+                    _context.Purchaseitem.Add(item);
+                }
+
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction("GetPurchase", new { id = purchase.Id }, purchase);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         // DELETE: api/Purchases/5

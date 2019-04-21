@@ -45,7 +45,7 @@ namespace move2playstoreAPI.Controllers
                     id += 1;
                 }
 
-                payment.RedirectUri = new Uri("http://localhost:3000/carrinho");
+                payment.RedirectUri = new Uri("http://localhost:3000/carrinho?transaction_id=");
 
                 var paymentRedirectUri = payment.Register(credentials);
 
